@@ -6,3 +6,4 @@ django-allauth
 whitenoise
 django-crispy-forms
 crispy-bootstrap5
+Pillow

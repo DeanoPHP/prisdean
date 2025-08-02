@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'accounts',
     'pages',
+    'userprofile',
     
     # Allauth
     'allauth',
@@ -99,5 +100,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']  # so Django knows where your static folder is
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
