@@ -14,6 +14,8 @@ class CustomLoginView(LoginView):
         If login fails, render index.html with login_form errors
         and also show signup_form (empty).
         """
+        print(form.errors)
+
         signup_form = CustomSignupForm()
         return render(self.request, "pages/index.html", {
             "login_form": form,
@@ -32,7 +34,7 @@ class CustomSignupView(SignupView):
         and also show login_form (empty).
         """
         login_form = LoginForm()
-        return render(self.request, "home/index.html", {
+        return render(self.request, "pages/index.html", {
             "signup_form": form,        # show signup errors
             "login_form": login_form,   # empty login form
             "show_register_modal": True # flag to reopen modal

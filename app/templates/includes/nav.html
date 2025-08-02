@@ -30,11 +30,13 @@
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
+                {% if user.is_staff %}
                 <li class="nav-item mx-3">
-                    <a class="nav-link disabled" aria-disabled="true">Admin</a>
+                    <a class="nav-link" aria-disabled="true">Admin</a>
                 </li>
+                {% endif %}
             </ul>
-            {% if not request.user %}
+            {% if not user.is_authenticated %}
             <div class="d-flex">
                 <button type="button" class="btn btn-outline-light mx-2" data-bs-toggle="modal"
                     data-bs-target="#loginModal">
@@ -46,10 +48,13 @@
                 </button>
             </div>
             {% else %}
-            <form method="post" action="{% url 'account_logout' %}" class="d-inline">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Logout</button>
-            </form>
+            <div class="d-flex align-items-center">
+                <span class="text-light me-3">Hi, {{ user.email }}</span>
+                <form method="post" action="{% url 'account_logout' %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                </form>
+            </div>
             {% endif %}
         </div>
     </div>

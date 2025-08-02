@@ -43,8 +43,11 @@ ACCOUNT_FORMS = {
 
 ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
 ACCOUNT_LOGIN_METHODS = {"email"}
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*', 'phone*', 'address_line_1*', 'city*', 'postcode*']
-LOGIN_REDIRECT_URL = '/' 
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+ACCOUNT_PHONE_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+LOGIN_REDIRECT_URL = "/"     
+LOGOUT_REDIRECT_URL = "/" 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
