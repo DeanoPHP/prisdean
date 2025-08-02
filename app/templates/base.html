@@ -12,10 +12,11 @@
         <!-- Custom Styles -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-        <title>{% block title %}PrisDean{% endblock %}</title>
+        <title>PrisDean {% block title %}{% endblock %}</title>
     </head>
 
     <body>
+        {% include 'includes/nav.html' %}
         {% block content %} {% endblock %}
 
         {% block extendedjs %}{% endblock %}
