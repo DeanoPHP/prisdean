@@ -41,6 +41,7 @@ ACCOUNT_FORMS = {
     'signup': 'accounts.forms.CustomSignupForm',
 }
 
+ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
 ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*', 'phone*', 'address_line_1*', 'city*', 'postcode*']
 LOGIN_REDIRECT_URL = '/' 

@@ -34,7 +34,7 @@
                     <a class="nav-link disabled" aria-disabled="true">Admin</a>
                 </li>
             </ul>
-            {% if not request.user.is_authenticated %}
+            {% if not request.user %}
             <div class="d-flex">
                 <button type="button" class="btn btn-outline-light mx-2" data-bs-toggle="modal"
                     data-bs-target="#loginModal">
