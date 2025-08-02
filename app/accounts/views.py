@@ -7,35 +7,29 @@ from django.shortcuts import render
 
 class CustomLoginView(LoginView):
     template_name = 'pages/index.html'
-    success_url = reverse_lazy('home')
-    
+    success_url = '/'
+
     def form_invalid(self, form):
         """
-        If login fails, render index.html with login_form errors
-        and also show signup_form (empty).
+        On login error, re-render index.html with errors
+        and auto-open the login modal.
         """
-        print(form.errors)
-
-        signup_form = CustomSignupForm()
         return render(self.request, "pages/index.html", {
-            "login_form": form,
-            "signup_form": signup_form,
-            "show_login_modal": True, 
+            "login_form": form,  
+            "show_login_modal": True,  
         })
     
 
 class CustomSignupView(SignupView):
     template_name = 'pages/index.html'
-    success_url = reverse_lazy('home')
-    
+    success_url = '/'
+
     def form_invalid(self, form):
         """
-        If signup fails, render index.html with signup_form errors
-        and also show login_form (empty).
+        On signup error, re-render index.html with errors
+        and auto-open the signup modal.
         """
-        login_form = LoginForm()
         return render(self.request, "pages/index.html", {
-            "signup_form": form,        # show signup errors
-            "login_form": login_form,   # empty login form
-            "show_register_modal": True # flag to reopen modal
+            "signup_form": form,
+            "show_register_modal": True,
         })
