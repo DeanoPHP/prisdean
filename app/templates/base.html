@@ -1,4 +1,4 @@
-{% load static %}
+{% load static crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +20,63 @@
         {% block content %} {% endblock %}
 
         {% block extendedjs %}{% endblock %}
+
+        <!-- Bootstrap JavaScript Bundle (includes Popper.js) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Modal to login -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'account_login' %}">
+                            {% csrf_token %}
+                            {{ login_form|crispy }}
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal to register -->
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'account_signup' %}">
+                            {% csrf_token %}
+                            {{ signup_form|crispy }}
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if show_login_modal %}
+        <script>
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+        </script>
+        {% endif %}
+
+        {% if show_register_modal %}
+        <script>
+            var registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+            registerModal.show();
+        </script>
+        {% endif %}
     </body>
 
 </html>
