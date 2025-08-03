@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <h1>Home page</h1>
-    <p>{{ user.profile.user.email }} works, i can get email, username, password</p>
-    <p>{{ user.postcode }}</p>
+<div class="container-fluid p-0">
+    <div class="d-flex align-items-center justify-content-center vh-100 text-white"
+        style="background: url('{% static 'img/hero.jpg' %}') center/cover no-repeat;">
+        <div class="text-center">
+            <h1 class="display-3 fw-bold">Welcome to PrisDean</h1>
+            <p class="lead">Best cleaning company in town</p>
+            <a href="#about" class="btn btn-primary btn-lg">Learn More</a>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
