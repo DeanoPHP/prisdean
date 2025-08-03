@@ -36,16 +36,19 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend', 
 ]
 
-# Allauth settings
+# Use ONLY ONE signup form setting
 ACCOUNT_FORMS = {
-    'signup': 'accounts.forms.CustomSignupForm',
+    'signup': 'accounts.forms.CustomSignupForm',  # point to your working form
 }
 
-ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
-ACCOUNT_LOGIN_METHODS = {"email"}
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
-ACCOUNT_PHONE_REQUIRED = False
+# Use email as login
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+
+# Email verification behavior
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 LOGIN_REDIRECT_URL = "/"     
 LOGOUT_REDIRECT_URL = "/" 
 
