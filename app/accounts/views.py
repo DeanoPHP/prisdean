@@ -1,7 +1,4 @@
 from allauth.account.views import SignupView, LoginView
-from django.urls import reverse_lazy
-from accounts.forms import CustomSignupForm
-from allauth.account.forms import LoginForm
 from django.shortcuts import render
 
 
