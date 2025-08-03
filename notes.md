@@ -9,8 +9,111 @@ docker-compose up
 - docker-compose run web python app/manage.py migrate
 - docker-compose run web python app/manage.py createsuperuser
 
-# Access psql
+# PostgreSQL Docker + `psql` Command Cheat Sheet
+
+## Access psql
+
+```sql
 docker exec -it prisdean-db-1 psql -U deanlark prisdean
+```
+
+## List Databases
+
+```sql
+\l
+```
+
+---
+
+## Connect to a Database
+
+```sql
+\c prisdean
+```
+
+---
+
+## List All Tables
+
+```sql
+\dt
+```
+
+List tables across all schemas:
+
+```sql
+\dt *.*
+```
+
+---
+
+## Describe a Table (Structure)
+
+```sql
+\d table_name
+```
+
+Example:
+
+```sql
+\d accounts_customuser
+```
+
+---
+
+## Show Columns in a Table
+
+```sql
+SELECT column_name
+FROM information_schema.columns
+WHERE table_name = 'accounts_customuser';
+```
+
+---
+
+## Select All Data from a Table
+
+```sql
+SELECT * FROM table_name;
+```
+
+Example:
+
+```sql
+SELECT * FROM accounts_customuser;
+```
+
+---
+
+## Limit Number of Rows
+
+```sql
+SELECT * FROM table_name LIMIT 10;
+```
+
+---
+
+## 10. Exit `psql`
+
+```sql
+\q
+```
+
+---
+
+## One-Liner Query from Outside Container
+
+If you don’t want to enter bash, you can run:
+
+```bash
+docker exec -it <container_name> psql -U <username> -d <database_name> -c "SELECT * FROM accounts_customuser;"
+```
+
+Example:
+
+```bash
+docker exec -it postgres-container psql -U deanlark -d prisdean -c "SELECT * FROM accounts_customuser;"
+```
 
 # Delete a user by email
 DELETE FROM accounts_customuser WHERE email='example@email.com';
