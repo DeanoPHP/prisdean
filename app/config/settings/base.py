@@ -49,7 +49,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 # Email verification behavior
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-LOGIN_REDIRECT_URL = "/"     
+LOGIN_REDIRECT_URL = "/profile/"     
 LOGOUT_REDIRECT_URL = "/" 
 
 MIDDLEWARE = [

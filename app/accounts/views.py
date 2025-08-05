@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 class CustomLoginView(LoginView):
     template_name = 'pages/index.html'
-    success_url = '/'
+    success_url = '/profile/'
 
     def form_invalid(self, form):
         """
@@ -19,7 +19,7 @@ class CustomLoginView(LoginView):
 
 class CustomSignupView(SignupView):
     template_name = 'pages/index.html'
-    success_url = '/'
+    success_url = '/profile/'
 
     def form_invalid(self, form):
         """
