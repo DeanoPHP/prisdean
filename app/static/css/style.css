@@ -3,3 +3,42 @@
     margin: 0;
     padding: 0;
 }
+
+/* Fix navbar height */
+.navbar {
+    height: 56px; 
+    display: flex;
+    align-items: center; /* vertically center logo */
+}
+
+/* Scale logo inside navbar without growing it */
+.navbar-brand .logo {
+    max-height: 100px;   /* fixed safe size for logo */
+    width: auto;        /* keep aspect ratio */
+    height: auto;
+    display: block;
+}
+
+/* Logo container to crop image */
+.logo-wrapper {
+    height: 40px;       /* fixed height to match navbar */
+    width: 120px;        /* adjust width as needed */
+    overflow: hidden;   /* crop extra parts of the logo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Zoom the logo inside container */
+.logo-wrapper .logo {
+    height: 120px;       /* 2x container height = zoomed-in look */
+    width: auto;
+    object-fit: cover;  /* ensures no distortion */
+}
+
+/* Optional: Slightly smaller logo on small screens */
+@media (max-width: 768px) {
+    .navbar-brand .logo {
+        max-height: 100px;
+    }
+}
