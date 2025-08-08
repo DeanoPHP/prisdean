@@ -1,15 +1,21 @@
-{% extends "base.html" %}
-{% load static crispy_forms_tags %}
-{% block content %}
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token%}
-        {{ form|crispy }}
+{% extends "base.html" %} 
+{% load static crispy_forms_tags %} {% block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-10 col-sm-10 mx-auto px-1 py-5 px-sm-0">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token%} {{ form|crispy }}
 
         <button class="btn btn-primary">Update</button>
-    </form>
+      </form>
 
-    {% if user.profile.profile_image %}
-        <img src="{{ request.user.profile.profile_image.url }}" alt="Profile Image" width="150">
-    {% endif %}
-
+      {% if user.profile.profile_image %}
+      <img
+        src="{{ request.user.profile.profile_image.url }}"
+        alt="Profile Image"
+        width="150" />
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}
