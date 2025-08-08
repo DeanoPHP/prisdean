@@ -4,41 +4,69 @@
     padding: 0;
 }
 
-/* Fix navbar height */
+body {
+    background-color: #fafafa;
+}
+
 .navbar {
     height: 56px; 
     display: flex;
-    align-items: center; /* vertically center logo */
+    align-items: center; 
 }
 
-/* Scale logo inside navbar without growing it */
+.dropdown-menu {
+    background-color: #212529;
+}
+
+.navbar-nav .nav-link,
+.dropdown-item {
+    color: #ffffff !important;
+}
+
+.dropdown-item:hover {
+    background-color: #343a40;
+}
+
 .navbar-brand .logo {
-    max-height: 100px;   /* fixed safe size for logo */
-    width: auto;        /* keep aspect ratio */
+    max-height: 100px;  
+    width: auto;     
     height: auto;
     display: block;
 }
 
-/* Logo container to crop image */
 .logo-wrapper {
-    height: 40px;       /* fixed height to match navbar */
-    width: 120px;        /* adjust width as needed */
-    overflow: hidden;   /* crop extra parts of the logo */
+    height: 40px;     
+    width: 120px;      
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Zoom the logo inside container */
 .logo-wrapper .logo {
-    height: 120px;       /* 2x container height = zoomed-in look */
+    height: 120px;
     width: auto;
-    object-fit: cover;  /* ensures no distortion */
+    object-fit: cover;
 }
 
-/* Optional: Slightly smaller logo on small screens */
 @media (max-width: 768px) {
     .navbar-brand .logo {
         max-height: 100px;
+    }
+
+    .container,
+    .container-fluid, 
+    .container-lg, 
+    .container-md, 
+    .container-sm, 
+    .container-xl, 
+    .container-xxl {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .navbar-collapse {
+        background-color: #212529;
+        padding: 20px;
     }
 }
