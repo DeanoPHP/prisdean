@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views import View
 from django.views.generic import (
     TemplateView, 
     UpdateView, 
     DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.forms import CustomSignupForm
 from django.urls import reverse_lazy
+from .forms import CombinedUserProfileForm
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -21,13 +22,29 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         return context
     
     
-class UpdateProfile(LoginRequiredMixin, UpdateView):
-    template_name = 'userProfile/update_profile.html'
-    success_url = reverse_lazy('profile')
+class UpdateProfileView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = CombinedUserProfileForm(
+            user_instance=request.user,
+            profile_instance=request.user.profile
+        )
+        
+        return render(request, 'userprofile/update_profile.html', {'form': form})
+    
+    def post(self, request):
+        form = CombinedUserProfileForm(
+            request.POST, request.FILES,
+            user_instance=request.user,
+            profile_instance=request.user.profile
+        )
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        return render(request, 'userprofile/update_profile.html', {'form': form})
     
     
     
-class DeleteProfile(LoginRequiredMixin, DeleteView):
+class DeleteProfileView(LoginRequiredMixin, DeleteView):
     """
     Need to create a signal that deletes the user if
     profile is deleted although I think the model 

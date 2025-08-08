@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token%}
+        {{ form|crispy }}
+
+        <button class="btn btn-primary">Update</button>
+    </form>
+
+    {% if user.profile.profile_image %}
+        <img src="{{ request.user.profile.profile_image.url }}" alt="Profile Image" width="150">
+    {% endif %}
+
+{% endblock %}
