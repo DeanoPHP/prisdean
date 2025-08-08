@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import (
-    TemplateView, 
-    UpdateView, 
+    TemplateView,
     DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import CombinedUserProfileForm
+from accounts.models import CustomUser
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -45,12 +45,13 @@ class UpdateProfileView(LoginRequiredMixin, View):
     
     
 class DeleteProfileView(LoginRequiredMixin, DeleteView):
-    """
-    Need to create a signal that deletes the user if
-    profile is deleted although I think the model 
-    already handles this.
-    """ 
-    pass
+    model = CustomUser()
+    success_url = reverse_lazy('home')
+    template_name = 'userprofile/confirm_delete.html'
+    
+    def get_object(self):
+        return self.request.user
+    
     
 
 
